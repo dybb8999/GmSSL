@@ -2781,9 +2781,10 @@ int tls_construct_client_verify(SSL *s)
     {
         pkey = s->cert->key->privatekey;
     }
-#endif
+#else
     pkey = s->cert->key->privatekey;
-
+#endif
+    
     hdatalen = BIO_get_mem_data(s->s3->handshake_buffer, &hdata);
     if (hdatalen <= 0) {
         SSLerr(SSL_F_TLS_CONSTRUCT_CLIENT_VERIFY, ERR_R_INTERNAL_ERROR);
