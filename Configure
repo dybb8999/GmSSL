@@ -10,12 +10,15 @@
 
 ##  Configure -- OpenSSL source tree configuration script
 
-require 5.10.0;
+use 5.10.0;
 use strict;
+use Config;
+use FindBin;
+use lib "$FindBin::Bin/util/perl";
 use File::Basename;
 use File::Spec::Functions qw/:DEFAULT abs2rel rel2abs/;
 use File::Path qw/mkpath/;
-use if $^O ne "VMS", 'File::Glob' => qw/glob/;
+use OpenSSL::Glob;
 
 # see INSTALL for instructions.
 
@@ -302,7 +305,7 @@ my $default_ranlib;
 $config{fips}=0;
 
 # Top level directories to build
-$config{dirs} = [ "crypto", "ssl", "engines", "apps", "util", "tools", "fuzz", "test" ];
+$config{dirs} = [ "crypto", "ssl", "engines", "apps", "util", "tools"];
 # crypto/ subdirectories to build
 $config{sdirs} = [
     "objects",
